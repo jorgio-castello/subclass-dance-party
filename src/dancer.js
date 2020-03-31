@@ -8,7 +8,8 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   this.timeBetweenSteps = timeBetweenSteps;
   this.top = top;
   this.left = left;
-  this.movement = 1;
+  this.movementHorizontal = 1;
+  this.movementVertical = 1;
   this.shouldMoveRandom = true;
 
   //Pushes eventual step invocation into the browser's queue, it will be run once other functions on the call stack are popped off
@@ -64,8 +65,9 @@ makeDancer.prototype.moveMiddle = function(index) {
 };
 
 makeDancer.prototype.moveRandom = function() {
-  this.top = this.top + Math.random() * 20 * this.movement;
-  this.left = this.left + Math.random() * 20 * this.movement;
+  debugger;
+  this.top = this.top + Math.random() * 20 * this.movementVertical;
+  this.left = this.left + Math.random() * 20 * this.movementHorizontal;
 
   let movement = {
     top: this.top,
@@ -73,5 +75,21 @@ makeDancer.prototype.moveRandom = function() {
   };
 
   this.$node.css(movement);
-  this.movement *= -1;
+
+  //If this.top === body height - imageContainerHeight - this.movemenetVertical = 1
+  if (this.top - window.danceFloorCoord.top <= 400) {
+    this.movementVertical = 1;
+  }
+  //If this.top === body height this.movementVertical = -1
+  if (window.danceFloorCoord.bottom - this.top <= 400) {
+    this.movementVertical = -1;
+  }
+  //If this.left === 0, movement.Horizontal = 1
+  if ( this.left <= 100) {
+    this.movementHorizontal = 1;
+  }
+  //If this.left === document.width, movement.horizontal = -1
+  if (window.danceFloorCoord.right - this.left <= 100) {
+    this.movementHorizontal = -1;
+  }
 };

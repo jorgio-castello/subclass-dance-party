@@ -25,7 +25,7 @@ h1 {
 
 button {
   display: inline-flex;
-  width: 10vw;
+  min-width: 10vw;
   font-size: .8rem;
   border-radius: 5px;
   height: 40px;
@@ -109,6 +109,13 @@ button:hover {
   to {
     transform: rotate(359deg);
   }
+}
+
+.containerCanvasElement {
+  height: 98.5%;
+  width: 98.5%;
+  margin: 0 auto;
+  border: 5px solid green;
 }
 
 /* body{
