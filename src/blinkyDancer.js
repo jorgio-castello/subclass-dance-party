@@ -9,13 +9,15 @@ makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
 //Re-assign makeBlinkyDance constructor to makeBlinkyDancer
 makeBlinkyDancer.prototype.constructor = makeBlinkyDancer;
 
-makeBlinkyDancer.prototype.oldStep = function() {
-  makeDancer.prototype.step.bind(this)(this.timeBetweenSteps);
-};
+// makeBlinkyDancer.prototype.oldStep = function() {
+
+// };
 
 //Mask makeBlinkyDancer step property
 makeBlinkyDancer.prototype.step = function() {
-  this.oldStep();
+  //Bind make dancer's step method so that it is invoked within the context of makeBlinkyDancer
+  let boundStepFunc = makeDancer.prototype.step.bind(this);
+  boundStepFunc(this.timeBetweenSteps);
   // call the old version of step at the beginning of any call to this new version of step
   // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and

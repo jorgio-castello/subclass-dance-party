@@ -19,6 +19,9 @@ var makeDancer = function(top, left, timeBetweenSteps) {
 // the basic dancer doesn't do anything interesting at all on each step,
 // it just schedules the next step
 makeDancer.prototype.step = function(timeBetweenSteps) {
+  //Invoking setTimeout places a function in a browser queue, it does not exist within the call stack
+  //In order to invoke the appropriate step method in the it's own context
+  //Bind the invoker of makeDancer's step method to it's own step method
   setTimeout(this.step.bind(this), timeBetweenSteps);
 };
 
