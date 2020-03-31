@@ -9,6 +9,7 @@ $(document).ready(function() {
     right: $('body').width(),
     bottom: $('body').height()
   };
+  window.timeoutId = 0;
 
   $('#add-emoji-button').on('click', function(event) {
     var dancerMakerFunctionName = window.dancersTypes[Math.floor(Math.random() * window.dancersTypes.length)];
@@ -28,6 +29,39 @@ $(document).ready(function() {
     $('.imageContainer').append(dancer.$node);
   });
 
+
+  $('#disco-ball-png').on('mousedown', function(e) {
+    let dancer = new makeTiltingDancer(0, $('.danceFloor').width() / 2, 1000);
+    $('.imageContainer').append(dancer.$node);
+    window.dancers.push(dancer);
+
+    let handleFirstClick = function(e) {
+      dancer.shouldMoveRandom = false;
+      let dragCoordinates = {};
+      dragCoordinates.pageX0 = e.pageX;
+      dragCoordinates.pageY0 = e.pageY;
+      dragCoordinates.offset0 = dancer.$node.offset();
+
+      let handleDrag = function(e) {
+        let left = dragCoordinates.offset0.left + (e.pageX - dragCoordinates.pageX0);
+        let top = dragCoordinates.offset0.top + (e.pageY - dragCoordinates.pageY0);
+        this.left = left;
+        this.top = top;
+        $(dancer.$node).offset({top: top, left: left});
+      };
+
+      let handleSecondClick = function(e) {
+        $(dancer.$node).off('mousemove', handleDrag).off('click', handleSecondClick);
+        dancer.shouldMoveRandom = true;
+      };
+      $(dancer.$node).on('mousemove', handleDrag);
+      $(dancer.$node).off('click', handleFirstClick);
+      $(dancer.$node).on('click', handleSecondClick);
+    };
+    $(dancer.$node).on('click', handleFirstClick);
+  });
+
+
   $('#start-surprise-button').on('click', function(event) {
     //Make the buttons disappear
     window.dancers.forEach(dancer => {
@@ -37,16 +71,17 @@ $(document).ready(function() {
       dancer.disappear();
     });
 
-    window.dancers.forEach((dancer, index) => {
+    let surpriseDancers = window.dancers.slice();
+    surpriseDancers.forEach((dancer, index) => {
       dancer.shouldMoveRandom = false;
-      dancer.moveMiddle(index);
+      dancer.surprise(index);
     });
   });
 
-  let tiles = Array.from(document.querySelectorAll('.tile'));
-  tiles.forEach(tile => {
-    setInterval(function() {
-      tile.style.backgroundColor = window.colors[Math.floor(Math.random() * window.colors.length)];
-    }, 500);
-  });
+  // let tiles = Array.from(document.querySelectorAll('.tile'));
+  // tiles.forEach(tile => {
+  //   setInterval(function() {
+  //     tile.style.backgroundColor = window.colors[Math.floor(Math.random() * window.colors.length)];
+  //   }, 500);
+  // });
 });

@@ -44,7 +44,7 @@ makeDancer.prototype.disappear = function() {
   this.$node.css('display', 'none');
 };
 
-makeDancer.prototype.moveMiddle = function(index) {
+makeDancer.prototype.surprise = function(index) {
   let startPosition = {
     top: $('body').height () / 2,
     left: -100 * (2 + index)
@@ -53,7 +53,7 @@ makeDancer.prototype.moveMiddle = function(index) {
   this.$node.css('display', 'inline-block');
 
   let moveDancer = function() {
-    if (startPosition.left <= 500) {
+    if (startPosition.left <= 1000) {
       startPosition.left += 25;
       this.$node.css(startPosition);
       setTimeout(moveDancer.bind(this), 250);
@@ -65,7 +65,6 @@ makeDancer.prototype.moveMiddle = function(index) {
 };
 
 makeDancer.prototype.moveRandom = function() {
-  debugger;
   this.top = this.top + Math.random() * 50 * this.movementVertical;
   this.left = this.left + Math.random() * 50 * this.movementHorizontal;
 
@@ -76,13 +75,6 @@ makeDancer.prototype.moveRandom = function() {
 
   this.$node.css(movement);
 
-  // //If this.top === body height - imageContainerHeight - this.movemenetVertical = 1
-  // if (window.danceFloorCoord.top + this.top > window.danceFloorCoord.bottom - 200) {
-  //   this.movementVertical = -1;
-  // } else if (this.top - window.danceFloorCoord.top <= 20) {
-  //   // //If this.top === body height this.movementVertical = -1
-  //   this.movementVertical = 1;
-  // }
   if (this.top + window.danceFloorCoord.top >= window.danceFloorCoord.bottom + 50) {
     this.movementVertical = -1;
   } else {
@@ -115,3 +107,7 @@ makeDancer.prototype.moveRandom = function() {
     }
   }
 };
+
+// makeDancer.prototype.userControl = function(e) {
+
+// };

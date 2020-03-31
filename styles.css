@@ -112,35 +112,6 @@ button:hover {
   }
 }
 
-.containerCanvasElement {
-  height: 98.5%;
-  width: 98.5%;
-  margin: 0 auto;
-  border: 5px solid green;
+button:focus {
+  outline: none;
 }
-
-/* body{
-  margin: 0px;
-  background-color:#444;
-  font-size: 18px;
-}
-body, a:link, a:visited, a:active{
-  color: lightblue;
-}
-.title, .addDancerButton{
-  padding:5px 12px;
-  float:right;
-}
-.topbar{
-  height:32px;
-  background-color: #555;
-}
-.title{
-  background-color: #777;
-}
-
-img {
-  height: 75px;
-  width: 75px;
-  position: absolute;
-} */
