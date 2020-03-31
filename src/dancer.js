@@ -1,11 +1,15 @@
 // Creates and returns a new dancer object that can step
 var makeDancer = function(top, left, timeBetweenSteps) {
-
+  this.imgCount = Math.floor(Math.random() * 12);
   // use jQuery to create an HTML <span> tag
-  this.$node = $('<span class="dancer"></span>');
+  this.$node = $(`<img class = "dancerImage" src="assets/${this.imgCount}.png"/>`);
 
   //Preserve timeBetweenSteps on the object
   this.timeBetweenSteps = timeBetweenSteps;
+  this.top = top;
+  this.left = left;
+  this.movement = 1;
+  this.shouldMoveRandom = true;
 
   //Pushes eventual step invocation into the browser's queue, it will be run once other functions on the call stack are popped off
   makeDancer.prototype.step.bind(this)(timeBetweenSteps);
@@ -33,4 +37,41 @@ makeDancer.prototype.setPosition = function(top, left) {
     left: left
   };
   this.$node.css(styleSettings);
+};
+
+makeDancer.prototype.disappear = function() {
+  this.$node.css('display', 'none');
+};
+
+makeDancer.prototype.moveMiddle = function(index) {
+  let startPosition = {
+    top: $('body').height () / 2,
+    left: -100 * (2 + index)
+  };
+  this.$node.css(startPosition);
+  this.$node.css('display', 'inline-block');
+
+  let moveDancer = function() {
+    if (startPosition.left <= 500) {
+      startPosition.left += 25;
+      this.$node.css(startPosition);
+      setTimeout(moveDancer.bind(this), 250);
+    } else {
+      return;
+    }
+  };
+  moveDancer.call(this);
+};
+
+makeDancer.prototype.moveRandom = function() {
+  this.top = this.top + Math.random() * 20 * this.movement;
+  this.left = this.left + Math.random() * 20 * this.movement;
+
+  let movement = {
+    top: this.top,
+    left: this.left
+  };
+
+  this.$node.css(movement);
+  this.movement *= -1;
 };

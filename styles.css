@@ -1,7 +1,117 @@
 body, html{
-  height:100%;
+  max-height:100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Neue', cursive;
 }
-body{
+
+.header {
+  text-align: center;
+  padding-top: 2.5vh;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+#disco-ball-png {
+  max-height: 15vh;
+  animation: rotation 15s infinite linear;
+  margin-top: 2.5vh;
+  margin-bottom: 2.5vh;
+}
+
+button {
+  display: inline-flex;
+  width: 10vw;
+  font-size: .8rem;
+  border-radius: 5px;
+  height: 40px;
+  line-height: 40px;
+  text-align: left;
+  background:#46D2FD;
+  border: 1px solid	#0AB3FC;
+  transition: background 0.6s;
+  -webkit-transition: background 0.6s;
+  -moz-transition: 0.6s;
+}
+
+button:hover {
+  cursor: pointer;
+  background:	#9CF4FE;
+}
+
+.button-emoji {
+  height: 25px;
+  margin-top: 6px;
+  margin-left: 7.5px;
+}
+
+#winkPic {
+  margin-left: 18px;
+  margin-top: 5px;
+}
+
+.danceFloor {
+  margin-top: 5px;
+  padding: 0 15px;
+  position: absolute;
+  top: 50;
+  left: 0;
+}
+
+.tile {
+  height: 205px;
+  width: 205px;
+  border: 2px solid #3B27BA;
+  border-radius: 10px;
+  transition: background 0.3s;
+  -webkit-transition: background 0.3s;
+  -moz-transition: 0.6s;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.dancerImage {
+  height: 75px;
+  position: absolute;
+  z-index: 10;
+}
+
+.imageContainer {
+  position: relative;
+  height: 415px;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+/* body{
   margin: 0px;
   background-color:#444;
   font-size: 18px;
@@ -20,8 +130,9 @@ body, a:link, a:visited, a:active{
 .title{
   background-color: #777;
 }
-.dancer{
-  border:10px solid red;
-  border-radius:10px;
-  position:absolute;
-}
+
+img {
+  height: 75px;
+  width: 75px;
+  position: absolute;
+} */

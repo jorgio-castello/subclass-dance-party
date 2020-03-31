@@ -3,17 +3,49 @@
   <head>
     <title>Object Dance Party</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
     <script src="lib/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="src/dancer.js"></script>
     <script src="src/blinkyDancer.js"></script>
     <script src = "src/tiltingDancer.js"></script>
+    <script src="src/changingSizeDancer.js"></script>
   </head>
   <body>
-    <div class="topbar">
-      <span class="title">object dance party</span>
+    <div class = "header">
+      <h1>Emoji Dance Party</h1>
+      <div class = "userInput">
+        <button id = "add-emoji-button">Add an Emoji <img class = "button-emoji" src = "assets/0.png"></button>
+        <button id = "start-surprise-button">Surprise!<img id = "winkPic" class = "button-emoji"src = "assets/11.png"></button>
+      </div>
+      <img id = "disco-ball-png" src ="assets/disco-ball.png">
+    </div>
+
+    <div class = "danceFloor">
+      <div class = "row">
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "break"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+        <div class = "column tile"></div>
+      </div>
+    </div>
+    <div class = "imageContainer"></div>
+
+    <!-- <div class="topbar">
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="makeBlinkyDancer">add a blinky dancer</a>
       <a href="#" class="addDancerButton" data-dancer-maker-function-name="makeTiltingDancer">add a tilting dancer<a>
-      </div>
+      <a href="#" class="addDancerButton" data-dancer-maker-function-name="makeChangingSizeDancer">add a changing size dancer<a>
+      <a href="#" class="lineUpButton">Line Up!</a>
+    </div> -->
     <script src="src/init.js"></script>
   </body>
 </html>
