@@ -9,10 +9,6 @@ makeBlinkyDancer.prototype = Object.create(makeDancer.prototype);
 //Re-assign makeBlinkyDance constructor to makeBlinkyDancer
 makeBlinkyDancer.prototype.constructor = makeBlinkyDancer;
 
-// makeBlinkyDancer.prototype.oldStep = function() {
-
-// };
-
 //Mask makeBlinkyDancer step property
 makeBlinkyDancer.prototype.step = function() {
   //Bind make dancer's step method so that it is invoked within the context of makeBlinkyDancer
