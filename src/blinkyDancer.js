@@ -20,7 +20,11 @@ makeBlinkyDancer.prototype.step = function() {
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
   if (this.shouldBlink) {
-    this.$node.toggle();
+    this.$node.css('opacity', '.5');
+    this.shouldBlink = false;
+  } else {
+    this.$node.css('opacity', '1');
+    this.shouldBlink = true;
   }
   if (this.shouldMoveRandom) {
     this.moveRandom();

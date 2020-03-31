@@ -12,7 +12,8 @@ makeTiltingDancer.prototype.step = function() {
 
   //Implement Tilting motion
   this.$node.css({
-    transform: `rotate(${this.degrees}deg)`
+    transform: `rotate(${this.degrees}deg)`,
+    transition: `${this.frequency} linear`
   });
   this.degrees += 50 * Math.random();
   if (this.shouldMoveRandom) {

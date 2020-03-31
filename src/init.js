@@ -1,7 +1,7 @@
 $(document).ready(function() {
   window.dancers = [];
   window.colors = ['#08F7FE', '#09FBD3', '#FE53BB', '#FFACFC', '#F148FB', '#7122FA', '#75D5FD', '#B76CFD', '#FDC7D7', 'FF9DE6', '#A5D8F3', '#00FECA', '#FF85EA', '#7B61F8', '#DE38C8', '#3B27BA', '#E847AE', '#13CA91', '#FF9472', '#FFDEF3', '#FDD400', '#FDB232', '#02B8A2', '#FEC763', '#EA55B1', '#A992FA', '#79FFFE', '#FEA0FE', '#CE96FB', '#01FFC3', '#01FFFF', '#FFB3FD', '#9D72FF'];
-  window.dancersTypes = ['makeBlinkyDancer', 'makeTiltingDancer', 'makeChangingSizeDancer'];
+  window.dancersTypes = ['makeTiltingDancer', 'makeBlinkyDancer', 'makeChangingSizeDancer'];
   window.dancers = [];
   window.danceFloorCoord = {
     top: $('.imageContainer').height(),
@@ -20,7 +20,7 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       ($(".danceFloor").height() - 100) * Math.random(),
       ($(".danceFloor").width() - 100) * Math.random(),
-      Math.random() * 1000
+      80
     );
 
     dancer.$node.attr('id', `${dancerMakerFunctionName}${window.dancers.length}`);
@@ -43,10 +43,10 @@ $(document).ready(function() {
     });
   });
 
-  // let tiles = Array.from(document.querySelectorAll('.tile'));
-  // tiles.forEach(tile => {
-  //   setInterval(function() {
-  //     tile.style.backgroundColor = window.colors[Math.floor(Math.random() * window.colors.length)];
-  //   }, 500);
-  // });
+  let tiles = Array.from(document.querySelectorAll('.tile'));
+  tiles.forEach(tile => {
+    setInterval(function() {
+      tile.style.backgroundColor = window.colors[Math.floor(Math.random() * window.colors.length)];
+    }, 500);
+  });
 });

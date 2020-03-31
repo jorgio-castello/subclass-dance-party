@@ -66,8 +66,8 @@ makeDancer.prototype.moveMiddle = function(index) {
 
 makeDancer.prototype.moveRandom = function() {
   debugger;
-  this.top = this.top + Math.random() * 20 * this.movementVertical;
-  this.left = this.left + Math.random() * 20 * this.movementHorizontal;
+  this.top = this.top + Math.random() * 50 * this.movementVertical;
+  this.left = this.left + Math.random() * 50 * this.movementHorizontal;
 
   let movement = {
     top: this.top,
@@ -76,14 +76,21 @@ makeDancer.prototype.moveRandom = function() {
 
   this.$node.css(movement);
 
-  //If this.top === body height - imageContainerHeight - this.movemenetVertical = 1
-  if (this.top - window.danceFloorCoord.top <= 400) {
-    this.movementVertical = 1;
-  }
-  //If this.top === body height this.movementVertical = -1
-  if (window.danceFloorCoord.bottom - this.top <= 400) {
+  // //If this.top === body height - imageContainerHeight - this.movemenetVertical = 1
+  // if (window.danceFloorCoord.top + this.top > window.danceFloorCoord.bottom - 200) {
+  //   this.movementVertical = -1;
+  // } else if (this.top - window.danceFloorCoord.top <= 20) {
+  //   // //If this.top === body height this.movementVertical = -1
+  //   this.movementVertical = 1;
+  // }
+  if (this.top + window.danceFloorCoord.top >= window.danceFloorCoord.bottom + 50) {
     this.movementVertical = -1;
+  } else {
+    if ( this.top < 3) {
+      this.movementVertical = 1;
+    }
   }
+
   //If this.left === 0, movement.Horizontal = 1
   if ( this.left <= 100) {
     this.movementHorizontal = 1;
@@ -91,5 +98,20 @@ makeDancer.prototype.moveRandom = function() {
   //If this.left === document.width, movement.horizontal = -1
   if (window.danceFloorCoord.right - this.left <= 100) {
     this.movementHorizontal = -1;
+  }
+
+  for (let i = 0; i < window.dancers.length; i++) {
+    if (this.top === window.dancers[i].top) {
+      continue;
+    }
+    if (Math.abs(this.top - window.dancers[i].top) < 35) {
+      if (Math.abs(this.left - window.dancers[i].left) < 35) {
+        this.movementVertical *= -1;
+        window.dancers[i].movementVertical *= -1;
+        this.movementHorizontal *= -1;
+        window.dancers[i].movementHorizontal *= -1;
+        makeDancer.prototype.moveRandom.call(this);
+      }
+    }
   }
 };
