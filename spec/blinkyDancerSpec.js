@@ -15,12 +15,14 @@ describe('blinkyDancer', function() {
   it('should update opacity once per step', function() {
     let opacityTest = blinkyDancer.$node[0].style.opacity;
     expect(opacityTest).to.equal('');
-    clock.tick(timeBetweenSteps);
 
+    clock.tick(timeBetweenSteps);
     opacityTest = blinkyDancer.$node[0].style.opacity;
-    clock.tick(timeBetweenSteps);
-    clock.tick(timeBetweenSteps);
     expect(opacityTest).to.equal('0.5');
+
+    clock.tick(timeBetweenSteps);
+    opacityTest = blinkyDancer.$node[0].style.opacity;
+    expect(opacityTest).to.equal('1');
   });
 
   describe('dance', function() {
