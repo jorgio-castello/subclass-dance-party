@@ -21,7 +21,7 @@ $(document).ready(function() {
     var dancer = new dancerMakerFunction(
       ($(".danceFloor").height() - 100) * Math.random(),
       ($(".danceFloor").width() - 100) * Math.random(),
-      80
+      85
     );
 
     dancer.$node.attr('id', `${dancerMakerFunctionName}${window.dancers.length}`);
@@ -31,12 +31,15 @@ $(document).ready(function() {
 
 
   $('#disco-ball-png').on('mousedown', function(e) {
-    let dancer = new makeTiltingDancer(0, 0, 80);
+    let dancer = new makeTiltingDancer(0, 0, 85);
     dancer.shouldMoveRandom = false;
     $('.imageContainer').append(dancer.$node);
-    window.dancers.push(dancer);
+
 
     let handleFirstClick = function(e) {
+      window.dancers.forEach(dancer => dancer.shouldMoveRandom = true);
+      window.dancers.push(dancer);
+
       let dragCoordinates = {};
       dragCoordinates.pageX0 = e.pageX;
       dragCoordinates.pageY0 = e.pageY;
@@ -47,7 +50,6 @@ $(document).ready(function() {
         let top = dragCoordinates.offset0.top + (e.pageY - dragCoordinates.pageY0);
         dancer.top = top - window.danceFloorCoord.bottom + window.danceFloorCoord.top;
         dancer.left = left;
-        debugger;
         $(dancer.$node).offset({top: top, left: left});
       };
 
@@ -73,10 +75,9 @@ $(document).ready(function() {
       dancer.disappear();
     });
 
-    let surpriseDancers = window.dancers.slice();
-    surpriseDancers.forEach((dancer, index) => {
+    window.dancers.forEach((dancer, index) => {
       dancer.shouldMoveRandom = false;
-      dancer.surprise(index);
+      dancer.surprise(window.dancers.length, index);
     });
   });
 

@@ -1,6 +1,6 @@
 // Creates and returns a new dancer object that can step
 var makeDancer = function(top, left, timeBetweenSteps) {
-  this.imgCount = Math.floor(Math.random() * 12);
+  this.imgCount = Math.floor(Math.random() * 8);
   // use jQuery to create an HTML <span> tag
   this.$node = $(`<img class = "dancerImage" src="assets/${this.imgCount}.png"/>`);
 
@@ -44,24 +44,17 @@ makeDancer.prototype.disappear = function() {
   this.$node.css('display', 'none');
 };
 
-makeDancer.prototype.surprise = function(index) {
+makeDancer.prototype.surprise = function(length, index) {
   let startPosition = {
-    top: $('body').height () / 2,
-    left: -100 * (2 + index)
+    top: $('.imageContainer').height() / 2 - 45,
+    left: 100 + $('body').width() * (index / length)
   };
+
+  this.top = startPosition.top;
+  this.left = startPosition.left;
+
   this.$node.css(startPosition);
   this.$node.css('display', 'inline-block');
-
-  let moveDancer = function() {
-    if (startPosition.left <= 1000) {
-      startPosition.left += 25;
-      this.$node.css(startPosition);
-      setTimeout(moveDancer.bind(this), 250);
-    } else {
-      return;
-    }
-  };
-  moveDancer.call(this);
 };
 
 makeDancer.prototype.moveRandom = function() {
@@ -108,6 +101,4 @@ makeDancer.prototype.moveRandom = function() {
   }
 };
 
-// makeDancer.prototype.userControl = function(e) {
 
-// };

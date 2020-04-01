@@ -30,11 +30,10 @@ h1 {
 button {
   display: inline-flex;
   min-width: 10vw;
-  font-size: .8rem;
+  font-size: 1rem;
   border-radius: 5px;
   height: 40px;
   line-height: 40px;
-  text-align: left;
   background:#46D2FD;
   border: 1px solid	#0AB3FC;
   transition: background 0.6s;
