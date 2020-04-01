@@ -12,10 +12,15 @@ describe('blinkyDancer', function() {
     expect(blinkyDancer.$node).to.be.an.instanceof(jQuery);
   });
 
-  it('should have a step function that makes its node blink', function() {
-    sinon.spy(blinkyDancer.$node, 'toggle');
-    blinkyDancer.step();
-    expect(blinkyDancer.$node.toggle.called).to.be.true;
+  it('should update opacity once per step', function() {
+    let opacityTest = blinkyDancer.$node[0].style.opacity;
+    expect(opacityTest).to.equal('');
+    clock.tick(timeBetweenSteps);
+
+    opacityTest = blinkyDancer.$node[0].style.opacity;
+    clock.tick(timeBetweenSteps);
+    clock.tick(timeBetweenSteps);
+    expect(opacityTest).to.equal('0.5');
   });
 
   describe('dance', function() {
