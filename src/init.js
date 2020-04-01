@@ -2,15 +2,14 @@ $(document).ready(function() {
   window.dancers = [];
   window.colors = ['#08F7FE', '#09FBD3', '#FE53BB', '#FFACFC', '#F148FB', '#7122FA', '#75D5FD', '#B76CFD', '#FDC7D7', 'FF9DE6', '#A5D8F3', '#00FECA', '#FF85EA', '#7B61F8', '#DE38C8', '#3B27BA', '#E847AE', '#13CA91', '#FF9472', '#FFDEF3', '#FDD400', '#FDB232', '#02B8A2', '#FEC763', '#EA55B1', '#A992FA', '#79FFFE', '#FEA0FE', '#CE96FB', '#01FFC3', '#01FFFF', '#FFB3FD', '#9D72FF'];
   window.dancersTypes = ['makeTiltingDancer', 'makeBlinkyDancer', 'makeChangingSizeDancer'];
-  window.dancers = [];
   window.danceFloorCoord = {
     top: $('.imageContainer').height(),
     left: 0,
     right: $('body').width(),
     bottom: $('body').height()
   };
-  window.timeoutId = 0;
 
+  //Inserts emoji onto the dancefloor
   $('#add-emoji-button').on('click', function(event) {
     var dancerMakerFunctionName = window.dancersTypes[Math.floor(Math.random() * window.dancersTypes.length)];
 
@@ -30,6 +29,7 @@ $(document).ready(function() {
   });
 
 
+  //Allows the user to hold an emoji to mess around with
   $('#disco-ball-png').on('mousedown', function(e) {
     let dancer = new makeTiltingDancer(0, 0, 85);
     dancer.shouldMoveRandom = false;
@@ -65,7 +65,7 @@ $(document).ready(function() {
     $(dancer.$node).on('click', handleFirstClick);
   });
 
-
+  //Gathers all of the emojis into a line
   $('#start-surprise-button').on('click', function(event) {
     //Make the buttons disappear
     window.dancers.forEach(dancer => {
@@ -81,6 +81,7 @@ $(document).ready(function() {
     });
   });
 
+  //Gives the dance floor random colors
   let tiles = Array.from(document.querySelectorAll('.tile'));
   tiles.forEach(tile => {
     setInterval(function() {

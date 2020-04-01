@@ -6,6 +6,8 @@ var makeChangingSizeDancer = function(top, left, timeBetweenSteps) {
 
 makeChangingSizeDancer.prototype = Object.create(makeDancer.prototype);
 makeChangingSizeDancer.prototype.constructor = makeChangingSizeDancer;
+
+//Scales the size of the emoji
 makeChangingSizeDancer.prototype.step = function() {
   let boundStepFunc = makeDancer.prototype.step.bind(this);
   boundStepFunc(this.timeBetweenSteps);

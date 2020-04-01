@@ -1,15 +1,19 @@
 // Creates and returns a new dancer object that can step
 var makeDancer = function(top, left, timeBetweenSteps) {
   this.imgCount = Math.floor(Math.random() * 8);
-  // use jQuery to create an HTML <span> tag
+  // use jQuery to create an HTML <img> tag
   this.$node = $(`<img class = "dancerImage" src="assets/${this.imgCount}.png"/>`);
 
   //Preserve timeBetweenSteps on the object
   this.timeBetweenSteps = timeBetweenSteps;
   this.top = top;
   this.left = left;
+
+  //Should the emoji be moving up or down?
   this.movementHorizontal = 1;
+  //Should the emoji be moving left or right?
   this.movementVertical = 1;
+  //Should the emoi be moving?
   this.shouldMoveRandom = true;
 
   //Pushes eventual step invocation into the browser's queue, it will be run once other functions on the call stack are popped off
@@ -44,6 +48,7 @@ makeDancer.prototype.disappear = function() {
   this.$node.css('display', 'none');
 };
 
+//Places the emojis in a line
 makeDancer.prototype.surprise = function(length, index) {
   let startPosition = {
     top: $('.imageContainer').height() / 2 - 45,
@@ -57,6 +62,7 @@ makeDancer.prototype.surprise = function(length, index) {
   this.$node.css('display', 'inline-block');
 };
 
+//Allows the emojis to move randomly and adjust their direction if they experience a collision
 makeDancer.prototype.moveRandom = function() {
   this.top = this.top + Math.random() * 50 * this.movementVertical;
   this.left = this.left + Math.random() * 50 * this.movementHorizontal;
